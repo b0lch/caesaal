@@ -22,6 +22,6 @@ button.addEventListener('click', () => {
     } else if (/^\d+$/.test(text)) {
     output.textContent = "Ungültige Eingabe!";
     } else {
-        output.textContent = caeserEncrypt(text);
+        output.textContent = caesarEncrypt(text);
     }
 });
