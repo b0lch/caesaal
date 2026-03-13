@@ -5,6 +5,7 @@ const output = document.querySelector(".output");
 function caesarEncrypt(text) {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const shift = 3;
+
   return text
     .toLowerCase()
     .split("")
@@ -16,13 +17,17 @@ function caesarEncrypt(text) {
     })
     .join("");
 }
-button.addEventListener('click', () => {
-    const text = input.value.trim();
-    if(text === "") {
-        output.textContent = "Bitte Text eingeben!";
-    } else if (/^\d+$/.test(text)) {
+
+button.addEventListener("click", () => {
+  const text = input.value.trim();
+
+  if (text === "") {
+    output.textContent = "Bitte Text eingeben!";
+  } 
+  else if (/^\d+$/.test(text)) {
     output.textContent = "Ungültige Eingabe!";
-    } else {
-        output.textContent = caesarEncrypt(text);
-    }
+  } 
+  else {
+    output.textContent = caesarEncrypt(text);
+  }
 });
