@@ -6,6 +6,7 @@ function caesarEncrypt(text) {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const shift = 3;
   return text
+    .toLowerCase()
     .split("")
     .map(char => {
       const index = alphabet.indexOf(char);
