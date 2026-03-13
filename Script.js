@@ -2,32 +2,50 @@ const input = document.querySelector(".textInput");
 const button = document.querySelector(".convertBtn");
 const output = document.querySelector(".output");
 
-function caesarEncrypt(text) {
+function caesarEncrypt(text, shift = 3) {
+
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  const shift = 3;
 
   return text
-    .toLowerCase()
     .split("")
     .map(char => {
-      const index = alphabet.indexOf(char);
-      if (index === -1) return char;
 
-      return alphabet[(index + shift) % 26];
+      const lower = char.toLowerCase();
+      const index = alphabet.indexOf(lower);
+
+      if (index === -1) {
+        return char;
+      }
+
+      let newChar = alphabet[(index + shift) % alphabet.length];
+
+      if (char === char.toUpperCase()) {
+        newChar = newChar.toUpperCase();
+      }
+
+      return newChar;
+
     })
     .join("");
 }
 
 button.addEventListener("click", () => {
+
   const text = input.value.trim();
 
   if (text === "") {
     output.textContent = "Bitte Text eingeben!";
-  } 
-  else if (/^\d+$/.test(text)) {
-    output.textContent = "Ungültige Eingabe!";
-  } 
-  else {
-    output.textContent = caesarEncrypt(text);
+    return;
+  }
+
+  const encrypted = caesarEncrypt(text);
+
+  output.textContent = encrypted;
+
+});
+
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    button.click();
   }
 });
